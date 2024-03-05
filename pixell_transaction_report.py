@@ -25,7 +25,7 @@ try:
         reader = csv.reader(csv_file)
         for row in reader:
             # Reset valid record and error message for each iteration
-            valid_record = True
+            valid_record = True 
             error_message = ''
 
             # Extract the customer ID from the first column
@@ -34,11 +34,18 @@ try:
             # Extract the transaction type from the second column
             transaction_type = row[1]
             ### VALIDATION 1 ###
-
+            if transaction_type != valid_transaction_types:
+                valid_record = False
+                print("ERROR: Invalid type")
             # Extract the transaction amount from the third column
             ### VALIDATION 2 ###
-            transaction_amount = float(row[2])
-
+            try:
+                transaction_amount = float(row[2])
+            except ValueError:
+                print("ERROR: ValueError")
+                valid_record = False
+                print("Non-numeric transaction")
+            
             if valid_record:
                 # Initialize the customer's account balance if it doesn't already exist
                 if customer_id not in customer_data:
@@ -58,7 +65,6 @@ try:
             customer_data[customer_id]['transactions'].append((transaction_amount, transaction_type))
         
         ### COLLECT INVALID RECORDS ###
-        
 
 
     print("PiXELL River Transaction Report\n===============================\n")
@@ -81,6 +87,3 @@ try:
 
 except FileNotFoundError:
     print("ERROR: FileNotFoundError")
-
-except ValueError:
-    print("ERROR: ValueError")
