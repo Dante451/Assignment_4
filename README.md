@@ -7,3 +7,4 @@
 ## and catch any errors that may arise
 ## pixell_transaction_report now has exceptions for FileNotFound and Value errors
 ## pixell_transaction_report now has an appended tuple into rejected_records list
+## pixell_transaction_report has been readied for debugging and testing
