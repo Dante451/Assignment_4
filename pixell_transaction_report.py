@@ -8,7 +8,7 @@ report the results.
 """
 import csv
 import os
- 
+
 valid_transaction_types = ['deposit', 'withdraw']
 customer_data = {}
 rejected_records = []
@@ -75,15 +75,15 @@ try:
     for customer_id, data in customer_data.items():
         balance = data['balance']
 
-        print(f"\nCustomer {customer_id} has a balance of {balance:.2f}.")
+        print(f"\nCustomer {customer_id} has a balance of ${balance:.2f}.")
         # Print the transaction history for the customer
         print("Transaction History:")
         for transaction in data['transactions']:
             amount, type = transaction
-            print(f"\t{type.capitalize()}: {amount}")
+            print(f"\t{type.capitalize()}: ${amount:.2f}")
 
     try:
-        print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_count):.2f}")
+        print(f"\nAVERAGE TRANSACTION AMOUNT: ${(total_transaction_amount / transaction_count):.2f}")
     except ZeroDivisionError:
         error_message = "ZeroDivisionError"
 
